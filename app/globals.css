@@ -1,0 +1,303 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+
+    /* Custom spacing variables */
+    --spacing-xs: 0.25rem; /* 4px */
+    --spacing-sm: 0.5rem; /* 8px */
+    --spacing-md: 0.75rem; /* 12px */
+    --spacing-lg: 1rem; /* 16px */
+    --spacing-xl: 1.25rem; /* 20px */
+    --spacing-2xl: 1.5rem; /* 24px */
+    --spacing-3xl: 2rem; /* 32px */
+    --spacing-4xl: 2.5rem; /* 40px */
+    --spacing-5xl: 3rem; /* 48px */
+    --spacing-6xl: 4rem; /* 64px */
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Consistent spacing utilities */
+@layer utilities {
+  .spacing-xs {
+    @apply p-1;
+  }
+  .spacing-sm {
+    @apply p-2;
+  }
+  .spacing-md {
+    @apply p-3;
+  }
+  .spacing-lg {
+    @apply p-4;
+  }
+  .spacing-xl {
+    @apply p-5;
+  }
+  .spacing-2xl {
+    @apply p-6;
+  }
+  .spacing-3xl {
+    @apply p-8;
+  }
+  .spacing-4xl {
+    @apply p-10;
+  }
+  .spacing-5xl {
+    @apply p-12;
+  }
+  .spacing-6xl {
+    @apply p-16;
+  }
+
+  .gap-xs {
+    @apply gap-1;
+  }
+  .gap-sm {
+    @apply gap-2;
+  }
+  .gap-md {
+    @apply gap-3;
+  }
+  .gap-lg {
+    @apply gap-4;
+  }
+  .gap-xl {
+    @apply gap-5;
+  }
+  .gap-2xl {
+    @apply gap-6;
+  }
+  .gap-3xl {
+    @apply gap-8;
+  }
+  .gap-4xl {
+    @apply gap-10;
+  }
+  .gap-5xl {
+    @apply gap-12;
+  }
+  .gap-6xl {
+    @apply gap-16;
+  }
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Responsive spacing */
+@media (min-width: 640px) {
+  .sm\:spacing-lg {
+    @apply sm:p-4;
+  }
+  .sm\:spacing-xl {
+    @apply sm:p-5;
+  }
+  .sm\:spacing-2xl {
+    @apply sm:p-6;
+  }
+  .sm\:spacing-3xl {
+    @apply sm:p-8;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:spacing-xl {
+    @apply lg:p-5;
+  }
+  .lg\:spacing-2xl {
+    @apply lg:p-6;
+  }
+  .lg\:spacing-3xl {
+    @apply lg:p-8;
+  }
+  .lg\:spacing-4xl {
+    @apply lg:p-10;
+  }
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #2563eb, #7c3aed);
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Consistent button heights */
+.btn-sm {
+  @apply h-8 px-3 text-sm;
+}
+.btn-md {
+  @apply h-10 px-4 text-sm;
+}
+.btn-lg {
+  @apply h-12 px-6 text-base;
+}
+
+/* Consistent input heights */
+.input-sm {
+  @apply h-8 px-3 text-sm;
+}
+.input-md {
+  @apply h-10 px-3 text-sm;
+}
+.input-lg {
+  @apply h-12 px-4 text-base;
+}
+
+/* Consistent card padding */
+.card-sm {
+  @apply p-4;
+}
+.card-md {
+  @apply p-4 sm:p-6 lg:p-8;
+}
+.card-lg {
+  @apply p-6 sm:p-8 lg:p-12;
+}
