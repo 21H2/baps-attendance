@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "@/lib/auth"
-import { updateStudent, deleteStudent } from "@/lib/database"
+import { updateStudent, deleteStudent } from "@/lib/simple-db"
 
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   try {

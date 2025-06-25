@@ -12,10 +12,13 @@ export async function POST(request: NextRequest) {
     const sessionId = await createSession(email, password)
 
     if (!sessionId) {
-      return NextResponse.json({ error: "Invalid credentials" }, { status: 401 })
+      return NextResponse.json({ error: "Invalid email or password" }, { status: 401 })
     }
 
-    return NextResponse.json({ message: "Login successful" })
+    return NextResponse.json({
+      message: "Login successful",
+      success: true,
+    })
   } catch (error) {
     console.error("Login error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })

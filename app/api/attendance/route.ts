@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "@/lib/auth"
-import { markAttendance, getAttendanceRecords } from "@/lib/neon-db"
+import { markAttendance, getAttendanceRecords } from "@/lib/simple-db"
 
 export async function GET(request: NextRequest) {
   try {

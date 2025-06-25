@@ -1,7 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-
-// Simple user storage (in production, use a proper database)
-const registeredUsers = new Map<string, any>()
+import { createUser } from "@/lib/simple-db"
 
 export async function POST(request: NextRequest) {
   try {
@@ -17,23 +15,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Password must be at least 6 characters long" }, { status: 400 })
     }
 
-    // Check if user already exists
-    if (registeredUsers.has(email)) {
-      return NextResponse.json({ error: "Email already exists" }, { status: 409 })
-    }
-
-    // Create user
-    const user = {
-      id: Math.random().toString(36).substring(2),
+    // Create user in database
+    const user = await createUser({
       email,
-      password, // In production, hash this
+      password_hash: password, // In production, hash this properly
       name,
       role,
-      status: "active",
-      created_at: new Date().toISOString(),
-    }
-
-    registeredUsers.set(email, user)
+    })
 
     return NextResponse.json({
       message: "User created successfully",
@@ -46,6 +34,11 @@ export async function POST(request: NextRequest) {
     })
   } catch (error: any) {
     console.error("Signup error:", error)
+
+    if (error.message.includes("already exists")) {
+      return NextResponse.json({ error: "Email already exists" }, { status: 409 })
+    }
+
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }

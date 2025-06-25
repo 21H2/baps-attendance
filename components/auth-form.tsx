@@ -129,50 +129,50 @@ export default function AuthForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-8 items-center">
+    <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
+      <div className="w-full max-w-7xl grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
         {/* Left Side - Branding */}
         <FadeIn className="hidden lg:block">
-          <div className="text-center lg:text-left space-y-8">
-            <div className="flex items-center justify-center lg:justify-start space-x-4">
-              <div className="p-4 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl shadow-2xl">
-                <GraduationCap className="w-12 h-12 text-white" />
+          <div className="text-center lg:text-left space-y-6 lg:space-y-8">
+            <div className="flex items-center justify-center lg:justify-start space-x-3 sm:space-x-4">
+              <div className="p-3 sm:p-4 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl shadow-2xl">
+                <GraduationCap className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
               </div>
               <div>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   AttendanceMS
                 </h1>
-                <p className="text-gray-600">Smart Management System</p>
+                <p className="text-sm sm:text-base text-gray-600">Smart Management System</p>
               </div>
             </div>
 
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-gray-900">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight">
                 Welcome to the Future of
                 <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Attendance Management
                 </span>
               </h2>
 
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
                 Experience seamless attendance tracking with our modern, intuitive platform designed for educational
                 institutions.
               </p>
 
-              <div className="grid gap-4">
+              <div className="grid gap-3 sm:gap-4">
                 {[
                   { icon: Sparkles, title: "Smart Analytics", desc: "Real-time insights and reporting" },
                   { icon: Shield, title: "Secure & Reliable", desc: "Enterprise-grade security" },
                   { icon: Users, title: "User Friendly", desc: "Intuitive interface for everyone" },
                 ].map((feature, index) => (
                   <FadeIn key={feature.title} delay={300 + index * 100}>
-                    <div className="flex items-center space-x-4 p-4 bg-white/50 rounded-xl border border-gray-100 hover:bg-white/80 transition-colors">
-                      <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg">
-                        <feature.icon className="w-5 h-5 text-white" />
+                    <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-white/50 rounded-xl border border-gray-100 hover:bg-white/80 transition-colors">
+                      <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex-shrink-0">
+                        <feature.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">{feature.title}</h3>
-                        <p className="text-sm text-gray-600">{feature.desc}</p>
+                      <div className="min-w-0 flex-1">
+                        <h3 className="font-semibold text-gray-900 text-sm sm:text-base">{feature.title}</h3>
+                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{feature.desc}</p>
                       </div>
                     </div>
                   </FadeIn>
@@ -184,18 +184,18 @@ export default function AuthForm() {
 
         {/* Right Side - Auth Form */}
         <FadeIn delay={200}>
-          <Card className="w-full max-w-md mx-auto shadow-2xl border-0 bg-white/80 backdrop-blur-xl">
-            <CardHeader className="text-center pb-2">
+          <Card className="w-full max-w-md mx-auto shadow-2xl border-0 bg-white/90 backdrop-blur-xl">
+            <CardHeader className="text-center pb-4 sm:pb-6">
               <div className="flex items-center justify-center space-x-2 mb-4 lg:hidden">
                 <div className="p-2 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl">
-                  <GraduationCap className="w-6 h-6 text-white" />
+                  <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <CardTitle className="text-2xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <CardTitle className="text-xl sm:text-2xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   AttendanceMS
                 </CardTitle>
               </div>
-              <CardTitle className="text-2xl text-gray-900">Get Started</CardTitle>
-              <p className="text-gray-600">Access your attendance management dashboard</p>
+              <CardTitle className="text-xl sm:text-2xl text-gray-900">Get Started</CardTitle>
+              <p className="text-sm sm:text-base text-gray-600">Access your attendance management dashboard</p>
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="login" className="w-full">
