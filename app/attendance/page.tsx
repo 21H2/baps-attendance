@@ -12,8 +12,8 @@ export default async function AttendancePage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">Attendance</h1>
-        <p className="text-muted-foreground">Track student attendance</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Attendance</h1>
+        <p className="text-muted-foreground dark:text-gray-400">Track student attendance</p>
       </div>
 
       <AttendanceTracker />

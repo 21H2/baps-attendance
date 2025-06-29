@@ -7,7 +7,7 @@ import { LayoutDashboard, Users, ClipboardCheck, FileText, Settings } from "luci
 import Image from "next/image"
 
 const navigation = [
-  { name: "Dashboard", href: "/", icon: LayoutDashboard, color: "text-blue-600" },
+  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard, color: "text-blue-600" },
   { name: "Students", href: "/students", icon: Users, color: "text-green-600" },
   { name: "Attendance", href: "/attendance", icon: ClipboardCheck, color: "text-purple-600" },
   { name: "Reports", href: "/reports", icon: FileText, color: "text-orange-600" },
@@ -18,9 +18,9 @@ export default function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <div className="bg-white/80 backdrop-blur-xl w-64 min-h-screen shadow-2xl border-r border-gray-200/50">
+    <div className="bg-white/80 backdrop-blur-xl w-64 min-h-screen shadow-2xl border-r border-gray-200/50 dark:bg-gray-900/80 dark:border-gray-700/50">
       {/* Header */}
-      <div className="p-6 sm:p-8 border-b border-gray-100">
+      <div className="p-6 sm:p-8 border-b border-gray-100 dark:border-gray-700">
         <div className="flex items-center space-x-3">
           <div className="p-2 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl shadow-lg">
             <Image
@@ -35,7 +35,7 @@ export default function Sidebar() {
             <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               BAPS Attendance
             </h1>
-            <p className="text-xs text-gray-500">Smart Management</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Smart Management</p>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@ export default function Sidebar() {
                 "flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group relative overflow-hidden",
                 isActive
                   ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transform scale-105"
-                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900 hover:scale-105",
+                  : "text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100 hover:scale-105",
               )}
               style={{ animationDelay: `${index * 100}ms` }}
             >
@@ -71,14 +71,14 @@ export default function Sidebar() {
 
       {/* Footer */}
       <div className="absolute bottom-6 left-4 right-4">
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 border border-blue-100">
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-4 border border-blue-100 dark:border-blue-800">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
               <span className="text-white text-xs font-bold">v1</span>
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-900">Version 1.0</p>
-              <p className="text-xs text-gray-500">Latest Update</p>
+              <p className="text-sm font-medium text-gray-900 dark:text-gray-100">Version 1.0</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Latest Update</p>
             </div>
           </div>
         </div>

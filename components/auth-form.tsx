@@ -173,13 +173,13 @@ export default function AuthForm() {
                   { icon: Users, title: "User Friendly", desc: "Intuitive interface for everyone" },
                 ].map((feature, index) => (
                   <FadeIn key={feature.title} delay={300 + index * 100}>
-                    <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-white/50 rounded-xl border border-gray-100 hover:bg-white/80 transition-colors">
+                    <div className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-white/50 dark:bg-gray-800/50 rounded-xl border border-gray-100 dark:border-gray-700 hover:bg-white/80 dark:hover:bg-gray-800/80 transition-colors">
                       <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex-shrink-0">
                         <feature.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h3 className="font-semibold text-gray-900 text-sm sm:text-base">{feature.title}</h3>
-                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{feature.desc}</p>
+                        <h3 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">{feature.title}</h3>
+                        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{feature.desc}</p>
                       </div>
                     </div>
                   </FadeIn>
@@ -191,7 +191,7 @@ export default function AuthForm() {
 
         {/* Right Side - Auth Form */}
         <FadeIn delay={200}>
-          <Card className="w-full max-w-md mx-auto shadow-2xl border-0 bg-white/90 backdrop-blur-xl">
+          <Card className="w-full max-w-md mx-auto shadow-2xl border-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl">
             <CardHeader className="text-center pb-4 sm:pb-6">
               <div className="flex items-center justify-center space-x-2 mb-4 lg:hidden">
                 <div className="p-2 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl">
@@ -212,15 +212,18 @@ export default function AuthForm() {
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="login" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 mb-6 bg-gray-100">
+                <TabsList className="grid w-full grid-cols-2 mb-6 bg-gray-100 dark:bg-gray-700">
                   <TabsTrigger
                     value="login"
                     data-value="login"
-                    className="data-[state=active]:bg-white data-[state=active]:shadow-sm"
+                    className="data-[state=active]:bg-white data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-600 dark:data-[state=active]:text-white"
                   >
                     Sign In
                   </TabsTrigger>
-                  <TabsTrigger value="signup" className="data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                  <TabsTrigger
+                    value="signup"
+                    className="data-[state=active]:bg-white data-[state=active]:shadow-sm dark:data-[state=active]:bg-gray-600 dark:data-[state=active]:text-white"
+                  >
                     Sign Up
                   </TabsTrigger>
                 </TabsList>
@@ -228,7 +231,7 @@ export default function AuthForm() {
                 <TabsContent value="login" className="space-y-4">
                   <form onSubmit={handleLogin} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="login-email" className="text-gray-700">
+                      <Label htmlFor="login-email" className="text-gray-700 dark:text-gray-200 font-medium">
                         Email Address
                       </Label>
                       <Input
@@ -237,13 +240,13 @@ export default function AuthForm() {
                         value={loginData.email}
                         onChange={(e) => setLoginData((prev) => ({ ...prev, email: e.target.value }))}
                         placeholder="Enter your email"
-                        className="h-12 bg-gray-50 border-gray-200 focus:bg-white transition-colors"
+                        className="h-12 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 focus:bg-white dark:focus:bg-gray-600 dark:text-white dark:placeholder:text-gray-400 transition-colors"
                         required
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="login-password" className="text-gray-700">
+                      <Label htmlFor="login-password" className="text-gray-700 dark:text-gray-200 font-medium">
                         Password
                       </Label>
                       <div className="relative">
@@ -253,17 +256,17 @@ export default function AuthForm() {
                           value={loginData.password}
                           onChange={(e) => setLoginData((prev) => ({ ...prev, password: e.target.value }))}
                           placeholder="Enter your password"
-                          className="h-12 bg-gray-50 border-gray-200 focus:bg-white transition-colors pr-12"
+                          className="h-12 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 focus:bg-white dark:focus:bg-gray-600 dark:text-white dark:placeholder:text-gray-400 transition-colors pr-12"
                           required
                         />
                         <Button
                           type="button"
                           variant="ghost"
                           size="icon"
-                          className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 hover:bg-gray-100"
+                          className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 p-0 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
                           onClick={() => setShowPassword(!showPassword)}
                         >
-                          {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                         </Button>
                       </div>
                     </div>
@@ -300,7 +303,7 @@ export default function AuthForm() {
                 <TabsContent value="signup" className="space-y-4">
                   <form onSubmit={handleSignup} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="signup-name" className="text-gray-700">
+                      <Label htmlFor="signup-name" className="text-gray-700 dark:text-gray-200 font-medium">
                         Full Name
                       </Label>
                       <Input
@@ -309,13 +312,13 @@ export default function AuthForm() {
                         value={signupData.name}
                         onChange={(e) => setSignupData((prev) => ({ ...prev, name: e.target.value }))}
                         placeholder="Enter your full name"
-                        className="h-12 bg-gray-50 border-gray-200 focus:bg-white transition-colors"
+                        className="h-12 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 focus:bg-white dark:focus:bg-gray-600 dark:text-white dark:placeholder:text-gray-400 transition-colors"
                         required
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="signup-email" className="text-gray-700">
+                      <Label htmlFor="signup-email" className="text-gray-700 dark:text-gray-200 font-medium">
                         Email Address
                       </Label>
                       <Input
@@ -324,20 +327,20 @@ export default function AuthForm() {
                         value={signupData.email}
                         onChange={(e) => setSignupData((prev) => ({ ...prev, email: e.target.value }))}
                         placeholder="Enter your email"
-                        className="h-12 bg-gray-50 border-gray-200 focus:bg-white transition-colors"
+                        className="h-12 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 focus:bg-white dark:focus:bg-gray-600 dark:text-white dark:placeholder:text-gray-400 transition-colors"
                         required
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="signup-role" className="text-gray-700">
+                      <Label htmlFor="signup-role" className="text-gray-700 dark:text-gray-200 font-medium">
                         Role
                       </Label>
                       <Select
                         value={signupData.role}
                         onValueChange={(value) => setSignupData((prev) => ({ ...prev, role: value }))}
                       >
-                        <SelectTrigger className="h-12 bg-gray-50 border-gray-200 focus:bg-white">
+                        <SelectTrigger className="h-12 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 dark:text-white">
                           <SelectValue placeholder="Select your role" />
                         </SelectTrigger>
                         <SelectContent>
@@ -349,7 +352,7 @@ export default function AuthForm() {
 
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="signup-password" className="text-gray-700">
+                        <Label htmlFor="signup-password" className="text-gray-700 dark:text-gray-200 font-medium">
                           Password
                         </Label>
                         <Input
@@ -358,14 +361,14 @@ export default function AuthForm() {
                           value={signupData.password}
                           onChange={(e) => setSignupData((prev) => ({ ...prev, password: e.target.value }))}
                           placeholder="Password"
-                          className="h-12 bg-gray-50 border-gray-200 focus:bg-white transition-colors"
+                          className="h-12 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 focus:bg-white dark:focus:bg-gray-600 dark:text-white dark:placeholder:text-gray-400 transition-colors"
                           required
                           minLength={6}
                         />
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="signup-confirm-password" className="text-gray-700">
+                        <Label htmlFor="signup-confirm-password" className="text-gray-700 dark:text-gray-200 font-medium">
                           Confirm
                         </Label>
                         <Input
@@ -374,7 +377,7 @@ export default function AuthForm() {
                           value={signupData.confirmPassword}
                           onChange={(e) => setSignupData((prev) => ({ ...prev, confirmPassword: e.target.value }))}
                           placeholder="Confirm"
-                          className="h-12 bg-gray-50 border-gray-200 focus:bg-white transition-colors"
+                          className="h-12 bg-gray-50 dark:bg-gray-700 border-gray-200 dark:border-gray-600 focus:bg-white dark:focus:bg-gray-600 dark:text-white dark:placeholder:text-gray-400 transition-colors"
                           required
                           minLength={6}
                         />

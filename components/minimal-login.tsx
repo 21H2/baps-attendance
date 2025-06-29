@@ -25,7 +25,7 @@ export default function MinimalLogin() {
     try {
       const success = await login(loginData.email, loginData.password)
       if (success) {
-        router.push("/")
+        router.push("/dashboard")
         router.refresh()
       } else {
         toast({
@@ -46,7 +46,7 @@ export default function MinimalLogin() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-red-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-red-50 dark:from-gray-900 dark:to-gray-800 px-4">
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -59,14 +59,14 @@ export default function MinimalLogin() {
               className="w-8 h-8"
             />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">BAPS Attendance</h1>
-          <p className="text-gray-600 mt-1">Admin Login</p>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">BAPS Attendance</h1>
+          <p className="text-gray-600 dark:text-gray-300 mt-1">Admin Login</p>
         </div>
-        <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
+        <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm dark:bg-gray-800/90">
           <CardContent className="p-6">
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="login-email" className="text-gray-700 font-medium">
+                <Label htmlFor="login-email" className="text-gray-700 dark:text-gray-200 font-medium">
                   Email
                 </Label>
                 <Input
@@ -76,11 +76,11 @@ export default function MinimalLogin() {
                   onChange={(e) => setLoginData((prev) => ({ ...prev, email: e.target.value }))}
                   placeholder="Enter your email"
                   required
-                  className="h-11 border-gray-200 focus:border-orange-500 focus:ring-orange-500/20 transition-colors"
+                  className="h-11 border-gray-200 focus:border-orange-500 focus:ring-orange-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 transition-colors"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="login-password" className="text-gray-700 font-medium">
+                <Label htmlFor="login-password" className="text-gray-700 dark:text-gray-200 font-medium">
                   Password
                 </Label>
                 <Input
@@ -90,7 +90,7 @@ export default function MinimalLogin() {
                   onChange={(e) => setLoginData((prev) => ({ ...prev, password: e.target.value }))}
                   placeholder="Enter your password"
                   required
-                  className="h-11 border-gray-200 focus:border-orange-500 focus:ring-orange-500/20 transition-colors"
+                  className="h-11 border-gray-200 focus:border-orange-500 focus:ring-orange-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 transition-colors"
                 />
               </div>
               <Button

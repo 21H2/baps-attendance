@@ -30,12 +30,12 @@ export function ResponsiveCard({
   }
 
   const gradientClasses = {
-    blue: "bg-gradient-to-br from-blue-50 to-indigo-100 border-blue-200",
-    purple: "bg-gradient-to-br from-purple-50 to-violet-100 border-purple-200",
-    green: "bg-gradient-to-br from-green-50 to-emerald-100 border-green-200",
-    orange: "bg-gradient-to-br from-orange-50 to-amber-100 border-orange-200",
-    pink: "bg-gradient-to-br from-pink-50 to-rose-100 border-pink-200",
-    none: "bg-white border-gray-200",
+    blue: "bg-gradient-to-br from-blue-50 to-indigo-100 border-blue-200 dark:from-blue-900/20 dark:to-indigo-900/20 dark:border-blue-700 dark:text-white",
+    purple: "bg-gradient-to-br from-purple-50 to-violet-100 border-purple-200 dark:from-purple-900/20 dark:to-violet-900/20 dark:border-purple-700 dark:text-white",
+    green: "bg-gradient-to-br from-green-50 to-emerald-100 border-green-200 dark:from-green-900/20 dark:to-emerald-900/20 dark:border-green-700 dark:text-white",
+    orange: "bg-gradient-to-br from-orange-50 to-amber-100 border-orange-200 dark:from-orange-900/20 dark:to-amber-900/20 dark:border-orange-700 dark:text-white",
+    pink: "bg-gradient-to-br from-pink-50 to-rose-100 border-pink-200 dark:from-pink-900/20 dark:to-rose-900/20 dark:border-pink-700 dark:text-white",
+    none: "bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:text-white",
   }
 
   return (

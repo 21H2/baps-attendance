@@ -97,7 +97,7 @@ export default function StudentsTable() {
           <div className="flex items-center justify-center py-12">
             <div className="text-center space-y-4">
               <LoadingSpinner size="lg" />
-              <p className="text-gray-600">Loading students...</p>
+              <p className="text-gray-600 dark:text-gray-400">Loading students...</p>
             </div>
           </div>
         </CardHeader>
@@ -142,12 +142,12 @@ export default function StudentsTable() {
         <CardContent className="space-y-6">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 w-5 h-5" />
               <Input
                 placeholder="Search by name, email, or student ID..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 h-12 bg-white border-gray-200 focus:border-blue-500 transition-colors"
+                className="pl-10 h-12 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 dark:text-white dark:placeholder:text-gray-400 transition-colors"
                 onKeyPress={(e) => e.key === "Enter" && handleSearch()}
               />
             </div>
@@ -161,37 +161,37 @@ export default function StudentsTable() {
             </Button>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
             <Table>
               <TableHeader>
-                <TableRow className="bg-gray-50/50">
-                  <TableHead className="font-semibold text-gray-900">Student ID</TableHead>
-                  <TableHead className="font-semibold text-gray-900">Name</TableHead>
-                  <TableHead className="font-semibold text-gray-900">Email</TableHead>
-                  <TableHead className="font-semibold text-gray-900">Grade</TableHead>
-                  <TableHead className="font-semibold text-gray-900">Status</TableHead>
-                  <TableHead className="font-semibold text-gray-900">Actions</TableHead>
+                <TableRow className="bg-gray-50/50 dark:bg-gray-700/50">
+                  <TableHead className="font-semibold text-gray-900 dark:text-white">Student ID</TableHead>
+                  <TableHead className="font-semibold text-gray-900 dark:text-white">Name</TableHead>
+                  <TableHead className="font-semibold text-gray-900 dark:text-white">Email</TableHead>
+                  <TableHead className="font-semibold text-gray-900 dark:text-white">Grade</TableHead>
+                  <TableHead className="font-semibold text-gray-900 dark:text-white">Status</TableHead>
+                  <TableHead className="font-semibold text-gray-900 dark:text-white">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {filteredStudents.map((student, index) => (
                   <TableRow
                     key={student.id}
-                    className="hover:bg-blue-50/50 transition-colors group"
+                    className="hover:bg-blue-50/50 dark:hover:bg-gray-700/50 transition-colors group"
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
-                    <TableCell className="font-mono text-sm font-medium text-blue-600">{student.student_id}</TableCell>
+                    <TableCell className="font-mono text-sm font-medium text-blue-600 dark:text-blue-400">{student.student_id}</TableCell>
                     <TableCell>
                       <div className="flex items-center space-x-3">
                         <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
                           {student.name.charAt(0)}
                         </div>
-                        <span className="font-medium text-gray-900">{student.name}</span>
+                        <span className="font-medium text-gray-900 dark:text-white">{student.name}</span>
                       </div>
                     </TableCell>
-                    <TableCell className="text-gray-600">{student.email}</TableCell>
+                    <TableCell className="text-gray-600 dark:text-gray-400">{student.email}</TableCell>
                     <TableCell>
-                      <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                      <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-700">
                         Grade {student.grade}
                       </Badge>
                     </TableCell>
@@ -200,29 +200,29 @@ export default function StudentsTable() {
                         variant={student.status === "active" ? "default" : "secondary"}
                         className={
                           student.status === "active"
-                            ? "bg-green-100 text-green-800 border-green-200"
-                            : "bg-gray-100 text-gray-600 border-gray-200"
+                            ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400"
+                            : "bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400"
                         }
                       >
                         {student.status}
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <div className="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="flex items-center space-x-2">
                         <EditStudentDialog student={student} onUpdate={fetchStudents}>
                           <Button
                             variant="ghost"
-                            size="icon"
-                            className="h-8 w-8 hover:bg-blue-100 hover:text-blue-600 transition-colors"
+                            size="sm"
+                            className="h-8 w-8 p-0 text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:text-blue-400 dark:hover:text-blue-300 dark:hover:bg-blue-900/20"
                           >
                             <Edit className="w-4 h-4" />
                           </Button>
                         </EditStudentDialog>
                         <Button
                           variant="ghost"
-                          size="icon"
+                          size="sm"
                           onClick={() => handleDelete(student.id, student.name)}
-                          className="h-8 w-8 hover:bg-red-100 hover:text-red-600 transition-colors"
+                          className="h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:text-red-300 dark:hover:bg-red-900/20"
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>
@@ -232,27 +232,19 @@ export default function StudentsTable() {
                 ))}
               </TableBody>
             </Table>
+          </div>
 
-            {filteredStudents.length === 0 && (
-              <div className="text-center py-12">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Search className="w-8 h-8 text-gray-400" />
-                </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No students found</h3>
-                <p className="text-gray-500">Try adjusting your search criteria</p>
+          {filteredStudents.length === 0 && (
+            <div className="text-center py-12">
+              <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                <UserPlus className="w-8 h-8 text-gray-400 dark:text-gray-500" />
               </div>
-            )}
-          </div>
-
-          <div className="flex items-center justify-between text-sm text-gray-600 bg-gray-50 rounded-lg p-4">
-            <span>
-              Showing {filteredStudents.length} of {students.length} students
-            </span>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              <span>Live data</span>
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">No students found</h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                {searchTerm ? "Try adjusting your search terms" : "Get started by adding your first student"}
+              </p>
             </div>
-          </div>
+          )}
         </CardContent>
       </GradientCard>
     </FadeIn>

@@ -16,8 +16,8 @@ export default async function StudentsPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold">Students</h1>
-          <p className="text-muted-foreground">Manage student records</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Students</h1>
+          <p className="text-muted-foreground dark:text-gray-400">Manage student records</p>
         </div>
         <AddStudentDialog>
           <Button>

@@ -7,11 +7,12 @@ import Sidebar from "@/components/sidebar"
 import Header from "@/components/header"
 import { Toaster } from "@/components/ui/toaster"
 import { Container } from "@/components/ui/container"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "AttendanceMS - Smart Attendance Management",
+  title: "BAPS Attendance - Smart Attendance Management",
   description: "Modern attendance tracking and management system with beautiful UI",
     generator: 'v0.dev'
 }
@@ -31,34 +32,48 @@ export default async function RootLayout({
 
   if (!session) {
     return (
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body className={inter.className}>
-          <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-            <Container size="full" padding="none">
-              {children}
-            </Container>
-          </div>
-          <Toaster />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+              <Container size="full" padding="none">
+                {children}
+              </Container>
+            </div>
+            <Toaster />
+          </ThemeProvider>
         </body>
       </html>
     )
   }
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <div className="flex h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
-          <Sidebar />
-          <div className="flex-1 flex flex-col overflow-hidden">
-            <Header />
-            <main className="flex-1 overflow-x-hidden overflow-y-auto">
-              <Container size="full" padding="md" className="py-6 sm:py-8 lg:py-12">
-                {children}
-              </Container>
-            </main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="flex h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+            <Sidebar />
+            <div className="flex-1 flex flex-col overflow-hidden">
+              <Header />
+              <main className="flex-1 overflow-x-hidden overflow-y-auto">
+                <Container size="full" padding="md" className="py-6 sm:py-8 lg:py-12">
+                  {children}
+                </Container>
+              </main>
+            </div>
           </div>
-        </div>
-        <Toaster />
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   )
