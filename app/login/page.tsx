@@ -1,6 +1,6 @@
 import { getServerSession } from "@/lib/auth"
 import { redirect } from "next/navigation"
-import NeonLogin from "@/components/neon-login"
+import MinimalLogin from "@/components/minimal-login"
 
 export default async function LoginPage() {
   const session = await getServerSession()
@@ -9,5 +9,5 @@ export default async function LoginPage() {
     redirect("/")
   }
 
-  return <NeonLogin />
+  return <MinimalLogin />
 }

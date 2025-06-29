@@ -11,9 +11,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useRouter } from "next/navigation"
 import { useToast } from "@/hooks/use-toast"
-import { Eye, EyeOff, GraduationCap, Sparkles, Shield, Users } from "lucide-react"
+import { Eye, EyeOff, Sparkles, Shield, Users } from "lucide-react"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
 import { FadeIn } from "@/components/ui/fade-in"
+import Image from "next/image"
 
 export default function AuthForm() {
   const [isLoading, setIsLoading] = useState(false)
@@ -136,11 +137,17 @@ export default function AuthForm() {
           <div className="text-center lg:text-left space-y-6 lg:space-y-8">
             <div className="flex items-center justify-center lg:justify-start space-x-3 sm:space-x-4">
               <div className="p-3 sm:p-4 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl shadow-2xl">
-                <GraduationCap className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
+                <Image
+                  src="/Baps_logo.svg"
+                  alt="BAPS Logo"
+                  width={48}
+                  height={48}
+                  className="w-10 h-10 sm:w-12 sm:h-12"
+                />
               </div>
               <div>
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  AttendanceMS
+                  BAPS Attendance
                 </h1>
                 <p className="text-sm sm:text-base text-gray-600">Smart Management System</p>
               </div>
@@ -188,10 +195,16 @@ export default function AuthForm() {
             <CardHeader className="text-center pb-4 sm:pb-6">
               <div className="flex items-center justify-center space-x-2 mb-4 lg:hidden">
                 <div className="p-2 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl">
-                  <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  <Image
+                    src="/Baps_logo.svg"
+                    alt="BAPS Logo"
+                    width={24}
+                    height={24}
+                    className="w-5 h-5 sm:w-6 sm:h-6"
+                  />
                 </div>
                 <CardTitle className="text-xl sm:text-2xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  AttendanceMS
+                  BAPS Attendance
                 </CardTitle>
               </div>
               <CardTitle className="text-xl sm:text-2xl text-gray-900">Get Started</CardTitle>

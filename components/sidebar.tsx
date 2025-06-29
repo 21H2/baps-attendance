@@ -3,7 +3,8 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { LayoutDashboard, Users, ClipboardCheck, FileText, Settings, GraduationCap } from "lucide-react"
+import { LayoutDashboard, Users, ClipboardCheck, FileText, Settings } from "lucide-react"
+import Image from "next/image"
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard, color: "text-blue-600" },
@@ -22,11 +23,17 @@ export default function Sidebar() {
       <div className="p-6 sm:p-8 border-b border-gray-100">
         <div className="flex items-center space-x-3">
           <div className="p-2 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl shadow-lg">
-            <GraduationCap className="w-6 h-6 text-white" />
+            <Image
+              src="/Baps_logo.svg"
+              alt="BAPS Logo"
+              width={24}
+              height={24}
+              className="w-6 h-6"
+            />
           </div>
           <div>
             <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              AttendanceMS
+              BAPS Attendance
             </h1>
             <p className="text-xs text-gray-500">Smart Management</p>
           </div>

@@ -11,8 +11,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useRouter } from "next/navigation"
 import { useToast } from "@/hooks/use-toast"
-import { Eye, EyeOff, GraduationCap, ArrowRight, UserPlus, LogIn } from "lucide-react"
+import { Eye, EyeOff, ArrowRight, UserPlus, LogIn } from "lucide-react"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
+import Image from "next/image"
 
 export default function NeonLogin() {
   const mountRef = useRef<HTMLDivElement>(null)
@@ -281,10 +282,16 @@ export default function NeonLogin() {
           {/* Logo */}
           <div className="text-center mb-8 animate-fade-in">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-cyan-500 to-pink-500 rounded-3xl shadow-2xl mb-6 transform hover:scale-110 transition-all duration-300 neon-glow">
-              <GraduationCap className="w-10 h-10 text-white" />
+              <Image
+                src="/Baps_logo.svg"
+                alt="BAPS Logo"
+                width={40}
+                height={40}
+                className="w-10 h-10"
+              />
             </div>
             <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400 mb-2 neon-text">
-              AttendanceMS
+              BAPS Attendance
             </h1>
             <p className="text-cyan-200 text-lg">Smart Management System</p>
           </div>
@@ -509,7 +516,7 @@ export default function NeonLogin() {
 
           {/* Footer */}
           <div className="text-center mt-8 text-cyan-300/60 text-sm">
-            <p>© 2024 AttendanceMS. All rights reserved.</p>
+            <p>© 2024 BAPS Attendance. All rights reserved.</p>
           </div>
         </div>
       </div>

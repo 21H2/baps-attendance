@@ -9,8 +9,9 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
 import { useRouter } from "next/navigation"
 import { useToast } from "@/hooks/use-toast"
-import { Eye, EyeOff, GraduationCap, ArrowRight } from "lucide-react"
+import { Eye, EyeOff, ArrowRight } from "lucide-react"
 import { LoadingSpinner } from "@/components/ui/loading-spinner"
+import Image from "next/image"
 
 export default function ThreeLogin() {
   const mountRef = useRef<HTMLDivElement>(null)
@@ -243,9 +244,15 @@ export default function ThreeLogin() {
           {/* Logo */}
           <div className="text-center mb-8 animate-fade-in">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-2xl mb-4 transform hover:scale-110 transition-transform duration-300">
-              <GraduationCap className="w-8 h-8 text-white" />
+              <Image
+                src="/Baps_logo.svg"
+                alt="BAPS Logo"
+                width={32}
+                height={32}
+                className="w-8 h-8"
+              />
             </div>
-            <h1 className="text-3xl font-bold text-white mb-2">AttendanceMS</h1>
+            <h1 className="text-3xl font-bold text-white mb-2">BAPS Attendance</h1>
             <p className="text-blue-200">Smart Management System</p>
           </div>
 
@@ -335,7 +342,7 @@ export default function ThreeLogin() {
 
           {/* Footer */}
           <div className="text-center mt-8 text-white/60 text-sm">
-            <p>© 2024 AttendanceMS. All rights reserved.</p>
+            <p>© 2024 BAPS Attendance. All rights reserved.</p>
           </div>
         </div>
       </div>
