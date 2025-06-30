@@ -191,28 +191,4 @@ export default function AttendeeForm() {
   )
 }
 
-// Add animation styles
-<style jsx global>{`
-@keyframes fade-in {
-  0% { opacity: 0; transform: scale(0.8); }
-  100% { opacity: 1; transform: scale(1); }
-}
-.animate-fade-in {
-  animation: fade-in 0.5s cubic-bezier(0.4,0,0.2,1);
-}
-@keyframes scale-in {
-  0% { transform: scale(0.5); }
-  100% { transform: scale(1); }
-}
-.animate-scale-in {
-  animation: scale-in 0.4s cubic-bezier(0.4,0,0.2,1);
-}
-@keyframes draw-tick {
-  0% { stroke-dasharray: 0 60; }
-  100% { stroke-dasharray: 60 0; }
-}
-.animate-draw-tick {
-  stroke-dasharray: 60 0;
-  animation: draw-tick 0.6s 0.2s cubic-bezier(0.4,0,0.2,1) forwards;
-}
-`}</style>
+// Move animation styles to global CSS
