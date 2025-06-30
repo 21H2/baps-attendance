@@ -12,8 +12,8 @@ import Image from "next/image"
 export default function AttendeeForm() {
   const [formData, setFormData] = useState({
     name: "",
-    rollNumber: "",
-    class: "",
+    phone: "",
+    email: "",
   })
   const [loading, setLoading] = useState(false)
   const { toast } = useToast()
@@ -37,7 +37,7 @@ export default function AttendeeForm() {
           title: "Success!",
           description: "Your details have been submitted successfully.",
         })
-        setFormData({ name: "", rollNumber: "", class: "" })
+        setFormData({ name: "", email: "", phone: "" })
       } else {
         throw new Error("Failed to submit")
       }
@@ -99,30 +99,30 @@ export default function AttendeeForm() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="rollNumber" className="text-gray-700 dark:text-gray-200 font-medium">
-                  Roll Number
+                <Label htmlFor="phone" className="text-gray-700 dark:text-gray-200 font-medium">
+                  Phone Number
                 </Label>
                 <Input
-                  id="rollNumber"
+                  id="phone"
                   type="text"
-                  value={formData.rollNumber}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, rollNumber: e.target.value }))}
-                  placeholder="Enter your roll number"
+                  value={formData.phone}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
+                  placeholder="Enter your phone number"
                   required
                   className="h-12 border-gray-200 focus:border-orange-500 focus:ring-orange-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 transition-colors"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="class" className="text-gray-700 dark:text-gray-200 font-medium">
-                  Class
+                <Label htmlFor="email" className="text-gray-700 dark:text-gray-200 font-medium">
+                  Email ID
                 </Label>
                 <Input
-                  id="class"
-                  type="text"
-                  value={formData.class}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, class: e.target.value }))}
-                  placeholder="Enter your class"
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+                  placeholder="Enter your email"
                   required
                   className="h-12 border-gray-200 focus:border-orange-500 focus:ring-orange-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 transition-colors"
                 />
@@ -142,7 +142,7 @@ export default function AttendeeForm() {
         {/* Footer */}
         <div className="text-center mt-8">
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            © 2024 BAPS Attendance System. All rights reserved.
+            © 2025 BAPS Attendance System. All rights reserved.
           </p>
         </div>
       </div>
