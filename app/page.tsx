@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -16,12 +16,15 @@ export default function AttendeeForm() {
     email: "",
   })
   const [loading, setLoading] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
   const { toast } = useToast()
   const router = useRouter()
+  const tickRef = useRef<HTMLDivElement>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
+    setShowSuccess(false)
 
     try {
       const response = await fetch("/api/submit", {
@@ -38,6 +41,8 @@ export default function AttendeeForm() {
           description: "Your details have been submitted successfully.",
         })
         setFormData({ name: "", email: "", phone: "" })
+        setShowSuccess(true)
+        setTimeout(() => setShowSuccess(false), 2500)
       } else {
         throw new Error("Failed to submit")
       }
@@ -139,6 +144,42 @@ export default function AttendeeForm() {
           </CardContent>
         </Card>
 
+        {/* Animated Success Tickmark */}
+        {showSuccess && (
+          <div
+            ref={tickRef}
+            className="flex justify-center items-center mb-6 animate-fade-in"
+            style={{ minHeight: 80 }}
+          >
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 64 64"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="drop-shadow-lg"
+            >
+              <circle
+                cx="32"
+                cy="32"
+                r="30"
+                stroke="#22c55e"
+                strokeWidth="4"
+                fill="#dcfce7"
+                className="animate-scale-in"
+              />
+              <path
+                d="M20 34L29 43L44 26"
+                stroke="#22c55e"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="animate-draw-tick"
+              />
+            </svg>
+          </div>
+        )}
+
         {/* Footer */}
         <div className="text-center mt-8">
           <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -149,3 +190,29 @@ export default function AttendeeForm() {
     </div>
   )
 }
+
+// Add animation styles
+<style jsx global>{`
+@keyframes fade-in {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.animate-fade-in {
+  animation: fade-in 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes scale-in {
+  0% { transform: scale(0.5); }
+  100% { transform: scale(1); }
+}
+.animate-scale-in {
+  animation: scale-in 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes draw-tick {
+  0% { stroke-dasharray: 0 60; }
+  100% { stroke-dasharray: 60 0; }
+}
+.animate-draw-tick {
+  stroke-dasharray: 60 0;
+  animation: draw-tick 0.6s 0.2s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+`}</style>
