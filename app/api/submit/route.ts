@@ -33,6 +33,15 @@ function checkRateLimit(ip: string): boolean {
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if DATABASE_URL is configured
+    if (!process.env.DATABASE_URL) {
+      console.error("DATABASE_URL environment variable is not set")
+      return NextResponse.json(
+        { error: "Database not configured. Please contact administrator." },
+        { status: 500 }
+      )
+    }
+
     // Get client IP for rate limiting
     const ip = request.ip || request.headers.get("x-forwarded-for") || "unknown"
     
@@ -86,6 +95,14 @@ export async function POST(request: NextRequest) {
 
   } catch (error: any) {
     console.error("Error in attendee submission:", error)
+    
+    // Log more details for debugging
+    if (error.message) {
+      console.error("Error message:", error.message)
+    }
+    if (error.stack) {
+      console.error("Error stack:", error.stack)
+    }
     
     // Don't expose internal errors to client
     return NextResponse.json(
