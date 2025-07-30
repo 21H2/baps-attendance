@@ -4,7 +4,7 @@ if (!process.env.DB_URL) {
   throw new Error("DB_URL environment variable is required")
 }
 
-const sql = neon(process.env.DB_URL)
+const sql = neon(process.env.DATABASE_URL)
 
 // User operations
 export interface CreateUserData {

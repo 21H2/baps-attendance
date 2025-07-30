@@ -34,9 +34,9 @@ function checkRateLimit(ip: string): boolean {
 
 export async function POST(request: NextRequest) {
   try {
-    // Check if DB_URL is configured
-    if (!process.env.DB_URL) {
-      console.error("DB_URL environment variable is not set")
+    // Check if DATABASE_URL is configured
+    if (!process.env.DATABASE_URL) {
+      console.error("DATABASE_URL environment variable is not set")
       return NextResponse.json(
         { error: "Database not configured. Please contact administrator." },
         { status: 500 }
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
 
     try {
       // Test database connection first
-      const sql = neon(process.env.DB_URL!)
+      const sql = neon(process.env.DATABASE_URL!)
       
       // Check if attendees table exists
       try {

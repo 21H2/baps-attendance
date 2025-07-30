@@ -3,11 +3,11 @@ import { neon } from "@neondatabase/serverless"
 
 export async function GET(request: NextRequest) {
   try {
-    // Check if DB_URL is configured
-    if (!process.env.DB_URL) {
+    // Check if DATABASE_URL is configured
+    if (!process.env.DATABASE_URL) {
       return NextResponse.json({
         status: "error",
-        message: "DB_URL environment variable is not set",
+        message: "DATABASE_URL environment variable is not set",
         config: {
           hasDatabaseUrl: false,
           nodeEnv: process.env.NODE_ENV
@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Test database connection
-    const sql = neon(process.env.DB_URL)
+    const sql = neon(process.env.DATABASE_URL)
     
     // Simple query to test connection
     const [result] = await sql`SELECT 1 as test`
@@ -38,10 +38,10 @@ export async function GET(request: NextRequest) {
       status: "error",
       message: "Database connection failed",
       error: error.message,
-      config: {
-        hasDatabaseUrl: !!process.env.DB_URL,
-        nodeEnv: process.env.NODE_ENV
-      }
+              config: {
+          hasDatabaseUrl: !!process.env.DATABASE_URL,
+          nodeEnv: process.env.NODE_ENV
+        }
     }, { status: 500 })
   }
 } 
