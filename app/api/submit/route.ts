@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createAttendee } from "@/lib/neon-db"
+import { neon } from "@neondatabase/serverless"
 import { z } from "zod"
 
 // Input validation schema
@@ -33,9 +34,9 @@ function checkRateLimit(ip: string): boolean {
 
 export async function POST(request: NextRequest) {
   try {
-    // Check if DATABASE_URL is configured
-    if (!process.env.DATABASE_URL) {
-      console.error("DATABASE_URL environment variable is not set")
+    // Check if DB_URL is configured
+    if (!process.env.DB_URL) {
+      console.error("DB_URL environment variable is not set")
       return NextResponse.json(
         { error: "Database not configured. Please contact administrator." },
         { status: 500 }
@@ -67,6 +68,20 @@ export async function POST(request: NextRequest) {
     const attendeeData = validationResult.data
 
     try {
+      // Test database connection first
+      const sql = neon(process.env.DB_URL!)
+      
+      // Check if attendees table exists
+      try {
+        await sql`SELECT 1 FROM attendees LIMIT 1`
+      } catch (tableError: any) {
+        console.error("Table check error:", tableError)
+        return NextResponse.json(
+          { error: "Database table not found. Please run the setup script." },
+          { status: 500 }
+        )
+      }
+
       // Create attendee using the utility function
       const attendee = await createAttendee(attendeeData)
 
@@ -84,12 +99,22 @@ export async function POST(request: NextRequest) {
         }
       }, { status: 201 })
     } catch (error: any) {
+      console.error("Database operation error:", error)
+      
       if (error.message.includes("already exists")) {
         return NextResponse.json(
           { error: error.message },
           { status: 409 }
         )
       }
+      
+      if (error.message.includes("relation") && error.message.includes("does not exist")) {
+        return NextResponse.json(
+          { error: "Database table not found. Please run the setup script." },
+          { status: 500 }
+        )
+      }
+      
       throw error // Re-throw to be caught by outer catch block
     }
 

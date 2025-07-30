@@ -1,10 +1,10 @@
 import { neon } from "@neondatabase/serverless"
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL environment variable is required")
+if (!process.env.DB_URL) {
+  throw new Error("DB_URL environment variable is required")
 }
 
-const sql = neon(process.env.DATABASE_URL)
+const sql = neon(process.env.DB_URL)
 
 // User operations
 export interface CreateUserData {
