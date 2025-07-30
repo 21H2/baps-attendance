@@ -293,3 +293,41 @@ export async function checkDatabaseConnection() {
     return false
   }
 }
+
+// Attendee operations
+export interface CreateAttendeeData {
+  name: string
+  phone: string
+  email: string
+}
+
+export async function createAttendee(data: CreateAttendeeData) {
+  try {
+    // Check for existing attendee with same email or phone
+    const existing = await sql`
+      SELECT id FROM attendees 
+      WHERE (email = ${data.email} OR phone = ${data.phone}) 
+      AND status != 'deleted'
+      LIMIT 1
+    `
+
+    if (existing.length > 0) {
+      throw new Error("An attendee with this email or phone number already exists")
+    }
+
+    // Insert new attendee
+    const [attendee] = await sql`
+      INSERT INTO attendees (name, phone, email, status, created_at)
+      VALUES (${data.name}, ${data.phone}, ${data.email}, 'active', NOW())
+      RETURNING id, name, phone, email, created_at
+    `
+
+    return attendee
+  } catch (error: any) {
+    if (error.message.includes("already exists")) {
+      throw error
+    }
+    console.error("Database error creating attendee:", error)
+    throw new Error("Failed to create attendee")
+  }
+}

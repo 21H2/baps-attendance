@@ -49,6 +49,17 @@ CREATE TABLE IF NOT EXISTS system_settings (
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Attendees table for public registration form
+CREATE TABLE IF NOT EXISTS attendees (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name VARCHAR(100) NOT NULL,
+  phone VARCHAR(20) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  status VARCHAR(20) DEFAULT 'active' CHECK (status IN ('active', 'inactive', 'deleted')),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 -- Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_attendance_records_date ON attendance_records(attendance_date);
 CREATE INDEX IF NOT EXISTS idx_attendance_records_student ON attendance_records(student_id);
@@ -57,6 +68,9 @@ CREATE INDEX IF NOT EXISTS idx_students_grade ON students(grade);
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
 CREATE INDEX IF NOT EXISTS idx_system_settings_key ON system_settings(key);
+CREATE INDEX IF NOT EXISTS idx_attendees_email ON attendees(email) WHERE status != 'deleted';
+CREATE INDEX IF NOT EXISTS idx_attendees_phone ON attendees(phone) WHERE status != 'deleted';
+CREATE INDEX IF NOT EXISTS idx_attendees_status ON attendees(status);
 
 -- Create updated_at trigger function
 CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -82,4 +96,8 @@ CREATE TRIGGER update_attendance_records_updated_at BEFORE UPDATE ON attendance_
 
 DROP TRIGGER IF EXISTS update_system_settings_updated_at ON system_settings;
 CREATE TRIGGER update_system_settings_updated_at BEFORE UPDATE ON system_settings
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+DROP TRIGGER IF EXISTS update_attendees_updated_at ON attendees;
+CREATE TRIGGER update_attendees_updated_at BEFORE UPDATE ON attendees
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
